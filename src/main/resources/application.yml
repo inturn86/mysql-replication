@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: mysql-replication
+  datasource:
+    master:
+      hikari:
+        username: ${MYSQL_ID}
+        password: ${MYSQL_PW}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://${MYSQL_MASTER_URL}:3306/replication
+    slave:
+      hikari:
+        username: ${MYSQL_ID}
+        password: ${MYSQL_PW}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://${MYSQL_SLAVE_URL}:3306/replication
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    defer-datasource-initialization: true
+
+    open-in-view: false
